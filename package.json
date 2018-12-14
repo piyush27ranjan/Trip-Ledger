@@ -1,0 +1,22 @@
+{
+  "name": "trip-ledger",
+  "version": "1.0.0",
+  "description": "Trip Ledger",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/piyush27ranjan/Trip-Ledger.git"
+  },
+  "author": "piyush27ranjan",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/piyush27ranjan/Trip-Ledger/issues"
+  },
+  "homepage": "https://github.com/piyush27ranjan/Trip-Ledger#readme",
+  "dependencies": {
+    "express": "^4.16.4"
+  }
+}
