@@ -20,7 +20,7 @@ app.use('/api', require('./api/api'));
 // Error handling middleware
 app.use((err, req ,res ,next) => {
 	console.log(err);
-	res.status(402).send({error: err.message});
+	res.status(422).send({error: err.message});
 });
 // Listen on port
 app.listen(port, () => {
