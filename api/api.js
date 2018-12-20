@@ -8,7 +8,11 @@ const Transaction = require('../models/transaction');
 // Get list of all the users
 router.get("/user", (req,res,next) => {
     User.find({}, {user_name:1, _id:0}).then((u) => {
-        res.send(u);
+        user_array = []
+        for (let user of u){
+            user_array.push(user.user_name);
+        }
+        res.send(user_array);
     }).catch(next);
 });
 
@@ -39,6 +43,16 @@ router.post('/book', (req,res,next) => {
     }).catch(next);
 });
 
+//Get list of all books
+router.get('/book', (req,res,next) => {
+    Book.find({}, {book_name:1, _id:0}).then((u) => {
+        book_array = []
+        for (let book of u){
+            book_array.push(book.book_name);
+        }
+        res.send(book_array);
+    }).catch(next);
+});
 // Create new transaction in a particular book
 router.post('/transaction', (req,res,next) => {
     Transaction.create(req.body).then((u) => {
