@@ -1,2 +1,2 @@
 # Trip-Ledger
-A web app for ledger
+Backend for creating and managing transaction using express and mongodb
