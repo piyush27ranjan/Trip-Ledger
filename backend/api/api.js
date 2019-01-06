@@ -60,4 +60,13 @@ router.post('/transaction', (req,res,next) => {
     }).catch(next);
 });
 
+// Get transactions from a particular book
+router.get('/transaction/:book', (req,res,next) => {
+    Transaction.find({book_name: req.params.book}).then((t) => {
+        res.send(t)     
+        console.log(t);
+        
+           
+    })
+})
 module.exports = router;
