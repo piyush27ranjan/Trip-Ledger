@@ -7,7 +7,6 @@ class Transaction extends Component {
     componentDidMount() {
         axios.get(`/api/transaction/${this.props.book_name}`).then((res) => {
             this.setState({transaction:res.data})
-
         })
     }
 
