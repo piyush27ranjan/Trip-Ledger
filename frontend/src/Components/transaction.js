@@ -1,21 +1,21 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import AddTransaction from './addTransaction'
 
 class Transaction extends Component {
-    state = {transaction:[]}
+    state = { transaction: [] }
 
     componentDidMount() {
         axios.get(`/api/transaction/${this.props.book_name}`).then((res) => {
-            this.setState({transaction:res.data})
+            this.setState({ transaction: res.data })
         })
     }
 
     render() {
-        const {transaction} = this.state
+        const { transaction } = this.state
         console.log(transaction)
         const transaction_tbody = transaction.map((tran) => {
-            console.log(tran)
-            return(
+            return (
                 <tr>
                     <td>{tran.payable_user}</td>
                     <td>{tran.purpose}</td>
@@ -23,24 +23,25 @@ class Transaction extends Component {
                 </tr>
             )
         })
-      
+
         return (
             <div>
                 <h1 class="center blue-text text-darken-2">Transactions</h1>
-                <span>
+                <div className="container">
                     <table className="highlight">
                         <thead>
                             <tr>
-                                <td>Payable User</td>
-                                <td>Purpose</td>
-                                <td>expense</td>
+                                <td className="blue-text">Payable User</td>
+                                <td className="blue-text">Purpose</td>
+                                <td className="blue-text">expense</td>
                             </tr>
                         </thead>
                         <tbody>
                             {transaction_tbody}
                         </tbody>
                     </table>
-                </span>
+                    <AddTransaction book_name={this.props.book_name}/>
+                </div>
             </div>
         )
     }

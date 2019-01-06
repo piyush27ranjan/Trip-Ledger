@@ -53,6 +53,15 @@ router.get('/book', (req,res,next) => {
         res.send(book_array);
     }).catch(next);
 });
+
+// Get list of all agents
+router.get('/book/:book_name', (req,res,next) => {
+    Book.find({book_name: req.params.book_name}, {agents:1, _id:0}).then((u) => {
+        console.log(u)
+        res.send(...u)
+    })
+})
+
 // Create new transaction in a particular book
 router.post('/transaction', (req,res,next) => {
     Transaction.create(req.body).then((u) => {
@@ -63,10 +72,7 @@ router.post('/transaction', (req,res,next) => {
 // Get transactions from a particular book
 router.get('/transaction/:book', (req,res,next) => {
     Transaction.find({book_name: req.params.book}).then((t) => {
-        res.send(t)     
-        console.log(t);
-        
-           
+        res.send(t)        
     })
 })
 module.exports = router;

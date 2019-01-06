@@ -8,7 +8,7 @@ var port = 8000;
 const app = express();
 
 // Connect to MongoDB using mongoose
-mongoose.connect('mongodb://127.0.0.1:27017/trip-ledger');
+mongoose.connect('mongodb://127.0.0.1:27017/trip-ledger', { useNewUrlParser: true });
 mongoose.Promise = global.Promise;
 
 // Use body parser
@@ -18,9 +18,9 @@ app.use(bodyParser.json());
 app.use('/api', require('./api/api'));
 
 // Error handling middleware
-app.use((err, req ,res ,next) => {
+app.use((err, req, res, next) => {
 	console.log(err);
-	res.status(422).send({error: err.message});
+	res.status(422).send({ error: err.message });
 });
 // Listen on port
 app.listen(port, () => {
