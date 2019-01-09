@@ -26,7 +26,7 @@ class Transaction extends Component {
 
         return (
             <div>
-                <h1 class="center blue-text text-darken-2">Transactions</h1>
+                <h1 className="center blue-text text-darken-2">Transactions</h1>
                 <div className="container">
                     <table className="highlight">
                         <thead>
