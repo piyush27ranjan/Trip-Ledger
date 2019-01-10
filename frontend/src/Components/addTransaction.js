@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import { FormGroup, FormControl, ControlLabel, Form, Button } from 'react-bootstrap';
+import Select from 'react-select';
+import makeAnimated from 'react-select/lib/animated'
 
 class AddTransaction extends Component {
     state = {
@@ -32,33 +33,18 @@ class AddTransaction extends Component {
     handleSubmit = (e) => {
         e.preventDefault();
         console.log(this.state)
+
     }
 
     render() {
         return (
             <div>
-                <Form inline>
-                    <FormGroup controlId="payable" validationState={this.validateState()}>
-                        <ControlLabel>Payable</ControlLabel>
-                        <FormControl type="text" placeholder="Name" onChange={(e) => { this.setState({ payable: e.target.value }) }} />
-                    </FormGroup>
-                    <FormGroup controlId="purpose" validationState={this.validateState()}>
-                        <ControlLabel>purpose</ControlLabel>
-                        <FormControl type="text" placeholder="Purpose" onChange={(e) => { this.setState({ purpose: e.target.value }) }} />
-                    </FormGroup>
-                    <FormGroup controlId="expense" validationState={this.validateState()}>
-                        <ControlLabel>expense</ControlLabel>
-                        <FormControl type="number" placeholder="Expense" onChange={(e) => { this.setState({ expense: e.target.value }) }} />
-                    </FormGroup>
-                    <FormGroup controlId="formControlsSelect">
-                        <ControlLabel>Select</ControlLabel>
-                        <FormControl componentClass="select" placeholder="select">
-                            <option value="select">select</option>
-                            <option value="other">...</option>
-                        </FormControl>
-                    </FormGroup>
-                    <Button type="submit" onClick={this.handleSubmit}>Add Transaction</Button>
-                </Form>
+                <Select
+                    closeMenuOnSelect={false}
+                    components={makeAnimated()}
+                    isMulti
+                />
+                <button class="waves-effect waves-light btn" onClick={this.handleSubmit}>button</button>
             </div>
         )
     }
