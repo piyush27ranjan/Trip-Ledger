@@ -3,7 +3,10 @@ import axios from 'axios';
 import AddTransaction from './addTransaction'
 
 class Transaction extends Component {
-    state = { transaction: [] }
+    state = {
+        transaction: [],
+        open: false
+    }
 
     componentDidMount() {
         axios.get(`/api/transaction/${this.props.book_name}`).then((res) => {
@@ -11,7 +14,11 @@ class Transaction extends Component {
         })
     }
 
+    
     render() {
+        const addTran = this.state.open ? (<div>
+        <button class="btn-floating btn-small waves-effect waves-light red" onClick={() => this.setState({open:!this.state.open})}><i class="material-icons">close</i></button>
+        <AddTransaction book_name={this.props.book_name} /></div>) : (<button class="btn-floating btn-small waves-effect waves-light red" onClick={() => this.setState({open:!this.state.open})}><i class="material-icons">add</i></button>)
         const { transaction } = this.state
         console.log(transaction)
         const transaction_tbody = transaction.map((tran) => {
@@ -40,7 +47,7 @@ class Transaction extends Component {
                             {transaction_tbody}
                         </tbody>
                     </table>
-                    <AddTransaction book_name={this.props.book_name}/>
+                    {addTran}
                 </div>
             </div>
         )
