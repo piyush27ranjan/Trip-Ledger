@@ -17,8 +17,8 @@ class Transaction extends Component {
     
     render() {
         const addTran = this.state.open ? (<div>
-        <button class="btn-floating btn-small waves-effect waves-light red" onClick={() => this.setState({open:!this.state.open})}><i class="material-icons">close</i></button>
-        <AddTransaction book_name={this.props.book_name} /></div>) : (<button class="btn-floating btn-small waves-effect waves-light red" onClick={() => this.setState({open:!this.state.open})}><i class="material-icons">add</i></button>)
+        <button className="btn-floating btn-small waves-effect waves-light red" onClick={() => this.setState({open:!this.state.open})}><i className="material-icons">close</i></button>
+        <AddTransaction book_name={this.props.book_name} /></div>) : (<button className="btn-floating btn-small waves-effect waves-light red" onClick={() => this.setState({open:!this.state.open})}><i className="material-icons">add</i></button>)
         const { transaction } = this.state
         console.log(transaction)
         const transaction_tbody = transaction.map((tran) => {
@@ -47,7 +47,8 @@ class Transaction extends Component {
                             {transaction_tbody}
                         </tbody>
                     </table>
-                    {addTran}
+                    <br/>
+                    {addTran} 
                 </div>
             </div>
         )
