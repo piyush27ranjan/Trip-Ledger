@@ -49,6 +49,13 @@ router.post('/book', (req,res,next) => {
     }).catch(next);
 });
 
+// Push a user to book's agents list
+router.post('/push_user', (req,res,next) => {
+    Book.update({book_name: req.body.book_name},{$push:{ agents: req.body.user_name}}).then((u) => {
+        res.send(u)
+    })
+})
+
 // Verify a Book
 router.post('/verify_book', (req,res,next) => {
     console.log(req.body)

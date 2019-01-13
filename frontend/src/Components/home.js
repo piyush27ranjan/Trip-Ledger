@@ -23,6 +23,10 @@ class Home extends Component {
             if (res.data.length !== 0) {
                 this.setState({ current_book: res.data[0].book_name })
                 this.props.get_current_book(this.state.current_book)
+                axios.post('/api/push_user', {
+                    user_name: this.state.current_user,
+                    book_name: this.state.current_book
+                })
             }
             else {
                 alert('Wrong book or password')
@@ -42,13 +46,13 @@ class Home extends Component {
     }
 
     signin_user = (e) => {
-        axios.post('api/user/',{
+        axios.post('api/user/', {
             user_name: this.state.signin_user,
             password: this.state.signin_user_password
         }).then((res) => {
             console.log(res);
             if (res.data.length !== 0) {
-                this.setState({ current_user : res.data[0].user_name })
+                this.setState({ current_user: res.data[0].user_name })
                 //this.props.get_current_book(this.state.current_book)
                 console.log(this.state)
             }
