@@ -5,12 +5,13 @@ import AddTransaction from './addTransaction'
 class Transaction extends Component {
     state = {
         transaction: [],
-        open: false
+        open: false,
+        current_book:""
     }
 
     componentDidMount() {
         axios.get(`/api/transaction/${this.props.book_name}`).then((res) => {
-            this.setState({ transaction: res.data })
+            this.setState({ transaction: res.data, current_book: this.props.book_name })
         })
     }
 
@@ -18,9 +19,9 @@ class Transaction extends Component {
     render() {
         const addTran = this.state.open ? (<div>
         <button className="btn-floating btn-small waves-effect waves-light red" onClick={() => this.setState({open:!this.state.open})}><i className="material-icons">close</i></button>
-        <AddTransaction book_name={this.props.book_name} /></div>) : (<button className="btn-floating btn-small waves-effect waves-light red" onClick={() => this.setState({open:!this.state.open})}><i className="material-icons">add</i></button>)
+        <AddTransaction book_name={this.state.current_book} /></div>) : (<button className="btn-floating btn-small waves-effect waves-light red" onClick={() => this.setState({open:!this.state.open})}><i className="material-icons">add</i></button>)
         const { transaction } = this.state
-        console.log(transaction)
+        console.log(this.state)
         const transaction_tbody = transaction.map((tran) => {
             return (
                 <tr>
@@ -30,8 +31,7 @@ class Transaction extends Component {
                 </tr>
             )
         })
-
-        return (
+        const head_tran = this.state.current_book ? (
             <div>
                 <h1 className="center blue-text text-darken-2">Transactions</h1>
                 <div className="container">
@@ -50,6 +50,15 @@ class Transaction extends Component {
                     <br/>
                     {addTran} 
                 </div>
+            </div>
+        ) : (
+            <div>
+                <h4 className="center blue-text">Signin to a Book</h4>
+            </div>
+        )
+        return (
+            <div>
+                {head_tran}
             </div>
         )
     }

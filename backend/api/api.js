@@ -43,6 +43,14 @@ router.post('/book', (req,res,next) => {
     }).catch(next);
 });
 
+// Verify a Book
+router.post('/verify_book', (req,res,next) => {
+    console.log(req.body)
+    Book.find({book_name: req.body.book_name, password: req.body.password }).then((b) => {
+        res.send(b)
+    })
+})
+
 //Get list of all books
 router.get('/book', (req,res,next) => {
     Book.find({}, {book_name:1, _id:0}).then((u) => {
