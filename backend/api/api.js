@@ -24,6 +24,12 @@ router.post('/', (req,res,next) => {
     }).catch(next);
 });
 
+// Verify a user
+router.post('/user', (req,res,next) => {
+    User.find({user_name:req.body.user_name, password:req.body.password}).then((u) =>{
+        res.send(u)
+    })
+})
 
 // Delete existing user
 router.delete('/:id', (req,res) => {
