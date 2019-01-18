@@ -1,5 +1,5 @@
 # Use a lighter version of Node as a parent image
-FROM node:8
+FROM node:10.14.1-alpine
 # Set the working directory to /client
 WORKDIR /client
 # copy package.json into the container at /client
